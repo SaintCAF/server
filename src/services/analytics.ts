@@ -6,13 +6,15 @@ import { Service } from '@app/models/service.model';
 import { Transport } from '@app/models/transport.model';
 
 export class InsureService {
-  async findAll(): Promise<Insure[]> {
+  async findAll(): Promise<any[]> {
     return await Insure.findAll({
-      attributes: [
-        'transportId',
-        [Sequelize.fn('COUNT', Sequelize.col('createdAt')), 'totalCreatedAt'], //кол-во дтп
-        [Sequelize.fn('MAX', Sequelize.col('createdAt')), 'maxCreatedAt'],
-      ],
+      attributes:
+        // ['transportId','userId','createdAt']
+        [
+          'transportId',
+          [Sequelize.fn('COUNT', Sequelize.col('createdAt')), 'totalInsures'], //кол-во дтп
+          [Sequelize.fn('MAX', Sequelize.col('createdAt')), 'maxCreatedAt'],
+        ],
       group: ['transportId'],
     });
   }

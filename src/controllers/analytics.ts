@@ -7,11 +7,7 @@ class InsureController {
     try {
       const insureService = new InsureService();
       const insure = await insureService.findAll();
-
-      if (!insure || insure.length === 0) {
-        return res.status(400).json({ message: `not found any insures` });
-      }
-      return res.status(200).json({ message: `insures: ${insure}` });
+      return res.json(insure);
     } catch (error) {
       next(error);
     }
@@ -23,11 +19,6 @@ class ServiceController {
     try {
       const serviceService = new ServiceService();
       const service = await serviceService.findAll();
-      //
-      // if (!service || service.length === 0) {
-      //   return res.status(400).json({ message: `not found any services` });
-      // }
-      // return res.status(200).json({ message: `insures: ${service}` });
       return res.json(service);
     } catch (error) {
       next(error);
