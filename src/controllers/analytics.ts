@@ -23,11 +23,12 @@ class ServiceController {
     try {
       const serviceService = new ServiceService();
       const service = await serviceService.findAll();
-
-      if (!service || service.length === 0) {
-        return res.status(400).json({ message: `not found any services` });
-      }
-      return res.status(200).json({ message: `insures: ${service}` });
+      //
+      // if (!service || service.length === 0) {
+      //   return res.status(400).json({ message: `not found any services` });
+      // }
+      // return res.status(200).json({ message: `insures: ${service}` });
+      return res.json(service);
     } catch (error) {
       next(error);
     }
